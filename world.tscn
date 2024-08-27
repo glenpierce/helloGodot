@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch5f5xyp7fjn1"]
+
+[ext_resource type="PackedScene" uid="uid://vnw2g4vec8ml" path="res://player.tscn" id="1_bnp3p"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ve48u"]
+
+[node name="World" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.897042, 3.74833)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.993411, -0.0343735, 0.109332, -2.22045e-16, 0.953963, 0.299923, -0.114608, -0.297947, 0.947677, 2.48447, 1.91004, 2.74644)
+
+[node name="Box" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.46977, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Box"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box"]
+shape = SubResource("BoxShape3D_ve48u")
+
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 0, -1.43108, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_ve48u")
+
+[node name="Player" parent="." instance=ExtResource("1_bnp3p")]
