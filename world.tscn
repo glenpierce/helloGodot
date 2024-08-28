@@ -24,10 +24,8 @@ shape = SubResource("BoxShape3D_ve48u")
 transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 0, -1.43108, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_ve48u")
 
 [node name="Player" parent="." instance=ExtResource("1_bnp3p")]

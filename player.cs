@@ -22,7 +22,15 @@ public partial class player : CharacterBody3D {
 		}
 		
 		Velocity = direction;
-		MoveAndSlide();
+		if(MoveAndSlide()) {
+			for(int i = 0; i < this.GetSlideCollisionCount(); i++) {
+				KinematicCollision3D kinematicCollision3D = this.GetSlideCollision(i);
+				if (kinematicCollision3D.GetCollider().IsClass("RigidBody3D")) {
+					RigidBody3D rigidBody3D = (RigidBody3D)kinematicCollision3D.GetCollider();
+					rigidBody3D.ApplyCentralImpulse(this.Velocity.Normalized());					
+				}
+			}
+		}
 	}
 
 	public override void _Process(double delta) {
