@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Code"
-run/main_scene="res://world.tscn"
+config/name="helloGodot"
+run/main_scene="res://2dScene.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 

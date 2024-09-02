@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4uj2av2w7nde"]
+
+[ext_resource type="Script" path="res://Node2DCharacterController.cs" id="1_cqe35"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_k4aio"]
+
+[node name="2dScene" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="."]
+scale = Vector2(20, 20)
+script = ExtResource("1_cqe35")
+
+[node name="Polygon2D" type="Polygon2D" parent="Node2D"]
+scale = Vector2(1, 1)
+color = Color(1, 0, 0, 1)
+texture = SubResource("CanvasTexture_k4aio")
+polygon = PackedVector2Array(0, 0, 1, 0, 1, 1, 0, 1)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Node2D/Polygon2D"]
+scale = Vector2(1, 1)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node2D/Polygon2D/RigidBody2D"]
+scale = Vector2(1, 1)
+polygon = PackedVector2Array(0, 0, 1, 0, 1, 1, 0, 1)
