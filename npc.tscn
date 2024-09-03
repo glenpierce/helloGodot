@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv1jmd0al01bc"]
+
+[ext_resource type="Script" path="res://NPCController.cs" id="1_45owc"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_k4aio"]
+
+[node name="NPC" type="Node2D"]
+scale = Vector2(20, 20)
+script = ExtResource("1_45owc")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(1, 0, 0, 1)
+texture = SubResource("CanvasTexture_k4aio")
+polygon = PackedVector2Array(0, 0, 1, 0, 1, 1, 0, 1)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Polygon2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D/RigidBody2D"]
+polygon = PackedVector2Array(0, 0, 1, 0, 1, 1, 0, 1)

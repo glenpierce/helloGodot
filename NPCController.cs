@@ -7,7 +7,13 @@ public partial class NPCController : Node2D {
 	private float happyDistance = 250.0f;
 	private bool isHappy = true;
 	public override void _Ready() {
-		player = GetParent().GetNode<Node2D>("Player");
+		if (player == null) {
+			player = GetParent().GetNode<Node2D>("Player");
+		}
+	}
+	
+	public void SetPlayer(Node2D player) {
+		this.player = player;
 	}
 
 	public override void _Process(double delta) {
