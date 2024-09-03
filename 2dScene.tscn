@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4uj2av2w7nde"]
+[gd_scene load_steps=4 format=3 uid="uid://b4uj2av2w7nde"]
 
 [ext_resource type="Script" path="res://Node2DCharacterController.cs" id="1_cqe35"]
+[ext_resource type="Script" path="res://NPCController.cs" id="2_hbqxi"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_k4aio"]
 
@@ -8,19 +9,38 @@
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Player" type="Node2D" parent="."]
+position = Vector2(-112, -25)
 scale = Vector2(20, 20)
 script = ExtResource("1_cqe35")
 
-[node name="Polygon2D" type="Polygon2D" parent="Node2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Player"]
+position = Vector2(-3.8147e-07, -9.53674e-08)
+scale = Vector2(1, 1)
+color = Color(0, 0, 1, 1)
+texture = SubResource("CanvasTexture_k4aio")
+polygon = PackedVector2Array(0, 0, 1, 0, 1, 1, 0, 1)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Player/Polygon2D"]
+scale = Vector2(1, 1)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player/Polygon2D/RigidBody2D"]
+scale = Vector2(1, 1)
+polygon = PackedVector2Array(0, 0, 1, 0, 1, 1, 0, 1)
+
+[node name="NPC" type="Node2D" parent="."]
+scale = Vector2(20, 20)
+script = ExtResource("2_hbqxi")
+
+[node name="Polygon2D" type="Polygon2D" parent="NPC"]
 scale = Vector2(1, 1)
 color = Color(1, 0, 0, 1)
 texture = SubResource("CanvasTexture_k4aio")
 polygon = PackedVector2Array(0, 0, 1, 0, 1, 1, 0, 1)
 
-[node name="RigidBody2D" type="RigidBody2D" parent="Node2D/Polygon2D"]
+[node name="RigidBody2D" type="RigidBody2D" parent="NPC/Polygon2D"]
 scale = Vector2(1, 1)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node2D/Polygon2D/RigidBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="NPC/Polygon2D/RigidBody2D"]
 scale = Vector2(1, 1)
 polygon = PackedVector2Array(0, 0, 1, 0, 1, 1, 0, 1)
