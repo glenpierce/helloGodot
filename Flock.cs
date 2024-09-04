@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Godot;
 
 public class Flock {
 	private List<Boid> boids;
@@ -12,9 +13,15 @@ public class Flock {
 	}
 
 	public void Update() {
-		foreach (Boid b in boids) {
-			b.Flock(boids.ToArray());
-			b.Update();
+		foreach (Boid boid in boids) {
+			boid.Flock(boids.ToArray());
+			boid.Update();
+		}
+	}
+	
+	public void setTarget(Vector2 target) {
+		foreach (Boid boid in boids) {
+			boid.Target = target;
 		}
 	}
 

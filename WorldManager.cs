@@ -3,8 +3,9 @@ using System;
 
 public partial class WorldManager : Node {
 	private Flock flock;
+	private Node2D player;
 	public override void _Ready() {
-		Node2D player = GetParent().GetNode<Node2D>("Player");
+		player = GetParent().GetNode<Node2D>("Player");
 		flock = new Flock();
 		PackedScene boidScene = GD.Load<PackedScene>("res://boid.tscn");
 		Node boidGroup = new Node();
@@ -20,5 +21,6 @@ public partial class WorldManager : Node {
 
 	public override void _Process(double delta) {
 		flock.Update();
+		flock.setTarget(player.Position);
 	}
 }
