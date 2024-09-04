@@ -2,22 +2,23 @@ using Godot;
 using System;
 
 public partial class WorldManager : Node {
+	private Flock flock;
 	public override void _Ready() {
-		PackedScene npcScene = GD.Load<PackedScene>("res://npc.tscn");
 		Node2D player = GetParent().GetNode<Node2D>("Player");
+		flock = new Flock();
+		PackedScene boidScene = GD.Load<PackedScene>("res://boid.tscn");
+		Node boidGroup = new Node();
+		AddChild(boidGroup);
+		
 		for(int i = 0; i < 10; i++) {
-			for(int j = 0; j < 10; j++) {
-				Node2D npcInstance = npcScene.Instantiate<Node2D>();
-				npcInstance.Position = new Vector2(i * 100, j * 100);
-				NPCController npcController = npcInstance as NPCController;
-				if (npcController != null) {
-					npcController.SetPlayer(player);
-				}
-				AddChild(npcInstance);
-			}
+			Boid boidInstance = boidScene.Instantiate<Boid>();
+			boidInstance.Instantiate(new Vector2((float)new Random().NextDouble() * 8, (float)new Random().NextDouble() * 6));
+			flock.AddBoid(boidInstance);
+			boidGroup.AddChild(boidInstance);
 		}
 	}
 
 	public override void _Process(double delta) {
+		flock.Update();
 	}
 }
